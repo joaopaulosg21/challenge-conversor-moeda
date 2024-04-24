@@ -1,5 +1,6 @@
 import http.WebClient;
 import model.ExchangeResponse;
+import model.Historic;
 
 import java.sql.SQLOutput;
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ public class Main {
     public static void main(String[] args) throws Exception{
         Scanner scanner = new Scanner(System.in);
         WebClient client = new WebClient();
-        List<String> conversoes = new ArrayList<>();
+        Historic historic = new Historic();
         String menu = """
                     \n
                     0 - Para ver o menu novamente
@@ -33,7 +34,7 @@ public class Main {
                 System.out.println("Opção invalida");
                 continue;
             } else if(opcao == 7) {
-                conversoes.forEach(System.out::println);
+                historic.viewHistoric();
                 Thread.sleep(1000);
                 continue;
             } else if(opcao == 8) {
@@ -46,11 +47,10 @@ public class Main {
             System.out.print("Digite o valor que deseja converter: ");
             double valor = scanner.nextDouble();
             ExchangeResponse response = client.converter(opcao,valor);
-            String conversao = String.format("O valor %.2f em [%s], corresponde ao valor %.4f em [%s]\n",valor,response.baseCode(),response.conversionResult(),response.targetCode());
-            conversoes.add(conversao);
+            historic.add(response,valor);
 
             System.out.println("******************************************\n");
-            System.out.printf(conversao);
+            System.out.printf("O valor %.2f em [%s], corresponde ao valor %.4f em [%s]\n",valor,response.baseCode(),response.conversionResult(),response.targetCode());
             System.out.println("\n******************************************");
             Thread.sleep(1000);
         }
