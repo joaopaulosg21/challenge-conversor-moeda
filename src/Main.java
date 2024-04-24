@@ -11,9 +11,9 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         WebClient client = new WebClient();
         List<String> conversoes = new ArrayList<>();
-        while(true) {
-            String menu = """
+        String menu = """
                     \n
+                    0 - Para ver o menu novamente
                     1 - Real brasileiro --> Peso argentino
                     2 - Peso argentino --> Real brasileiro
                     3 - Dolar americano --> Peso colombiano
@@ -23,20 +23,24 @@ public class Main {
                     7 - Verificar historico de conversões
                     8 - Sair
                 """;
-            System.out.println(menu);
-            System.out.print("Bem vindo ao conversor de moedas, selecione uma opção no menu: ");
+        System.out.println(menu);
+
+        while(true) {
+            System.out.print("Bem vindo ao conversor de moedas, selecione uma opção no menu (Digite 0 para ver o menu novamente): ");
             int opcao = scanner.nextInt();
 
-            if(opcao < 1 || opcao > 8) {
+            if(opcao < 0 || opcao > 8) {
                 System.out.println("Opção invalida");
-            }
-            if(opcao == 7) {
-                conversoes.forEach(System.out::println);
-                Thread.sleep(2000);
                 continue;
-            }
-            if(opcao == 8) {
+            } else if(opcao == 7) {
+                conversoes.forEach(System.out::println);
+                Thread.sleep(1000);
+                continue;
+            } else if(opcao == 8) {
                 break;
+            } else if(opcao == 0) {
+                System.out.println(menu);
+                continue;
             }
 
             System.out.print("Digite o valor que deseja converter: ");
@@ -48,7 +52,7 @@ public class Main {
             System.out.println("******************************************\n");
             System.out.printf(conversao);
             System.out.println("\n******************************************");
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         }
 
     }
