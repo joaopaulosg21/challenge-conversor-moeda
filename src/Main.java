@@ -1,11 +1,8 @@
+import java.util.Scanner;
+
 import http.WebClient;
 import model.ExchangeResponse;
 import model.Historic;
-
-import java.sql.SQLOutput;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception{
@@ -35,7 +32,6 @@ public class Main {
                 continue;
             } else if(opcao == 7) {
                 historic.viewHistoric();
-                Thread.sleep(1000);
                 continue;
             } else if(opcao == 8) {
                 break;
@@ -52,8 +48,9 @@ public class Main {
             System.out.println("******************************************\n");
             System.out.printf("O valor %.2f em [%s], corresponde ao valor %.4f em [%s]\n",valor,response.baseCode(),response.conversionResult(),response.targetCode());
             System.out.println("\n******************************************");
-            Thread.sleep(1000);
         }
+
+        scanner.close();
 
     }
 }
