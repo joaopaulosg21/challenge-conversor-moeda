@@ -26,7 +26,6 @@ public class WebClient {
         this.path = defaultPath;
     }
 
-
     public ExchangeResponse converter(int opcao,double valor) throws IOException, InterruptedException {
         HttpClient client = HttpClient.newHttpClient();
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
