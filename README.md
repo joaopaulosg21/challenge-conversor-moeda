@@ -1,6 +1,6 @@
 # Conversor de moedas
 
-## Descriçãp 
+## Descrição
     Projeto criado como um challenger da formação java para a turma do ONE (oracle next education)
 
 ## Dependências
